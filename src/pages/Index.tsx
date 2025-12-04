@@ -28,6 +28,7 @@ interface Exercise {
   reps: string;
   restTime: number;
   description: string;
+  videoUrl: string;
 }
 
 const workouts: Workout[] = [
@@ -94,10 +95,42 @@ const workouts: Workout[] = [
 ];
 
 const sampleExercises: Exercise[] = [
-  { id: 1, name: 'Приседания', sets: 3, reps: '15-20', restTime: 60, description: 'Классические приседания с собственным весом' },
-  { id: 2, name: 'Отжимания', sets: 3, reps: '10-15', restTime: 60, description: 'Отжимания от пола с правильной техникой' },
-  { id: 3, name: 'Планка', sets: 3, reps: '30-60 сек', restTime: 45, description: 'Статическое упражнение для кора' },
-  { id: 4, name: 'Выпады', sets: 3, reps: '12 на ногу', restTime: 60, description: 'Выпады вперед для ног и ягодиц' },
+  { 
+    id: 1, 
+    name: 'Приседания', 
+    sets: 3, 
+    reps: '15-20', 
+    restTime: 60, 
+    description: 'Классические приседания с собственным весом. Ноги на ширине плеч, спина прямая, опускаемся до параллели с полом.',
+    videoUrl: 'https://www.youtube.com/embed/aclHkVaku9U'
+  },
+  { 
+    id: 2, 
+    name: 'Отжимания', 
+    sets: 3, 
+    reps: '10-15', 
+    restTime: 60, 
+    description: 'Отжимания от пола с правильной техникой. Руки на ширине плеч, тело в одну линию, опускаемся до касания грудью пола.',
+    videoUrl: 'https://www.youtube.com/embed/IODxDxX7oi4'
+  },
+  { 
+    id: 3, 
+    name: 'Планка', 
+    sets: 3, 
+    reps: '30-60 сек', 
+    restTime: 45, 
+    description: 'Статическое упражнение для кора. Упор на предплечья и носки, тело вытянуто в прямую линию, напрягаем пресс.',
+    videoUrl: 'https://www.youtube.com/embed/pSHjTRCQxIw'
+  },
+  { 
+    id: 4, 
+    name: 'Выпады', 
+    sets: 3, 
+    reps: '12 на ногу', 
+    restTime: 60, 
+    description: 'Выпады вперед для ног и ягодиц. Шаг вперед, опускаем заднее колено почти до пола, переднее колено над пяткой.',
+    videoUrl: 'https://www.youtube.com/embed/QOVaHwm-Q6U'
+  },
 ];
 
 const aiMessages = [
@@ -680,10 +713,15 @@ export default function Index() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-lg p-6 flex items-center justify-center min-h-[200px]">
-                <div className="text-center space-y-2">
-                  <Icon name="Play" size={48} className="mx-auto text-primary" />
-                  <p className="text-sm text-muted-foreground">Видео с техникой выполнения</p>
+              <div className="rounded-lg overflow-hidden">
+                <div className="relative aspect-video bg-black">
+                  <iframe
+                    src={sampleExercises[currentExercise].videoUrl}
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title={sampleExercises[currentExercise].name}
+                  />
                 </div>
               </div>
 
